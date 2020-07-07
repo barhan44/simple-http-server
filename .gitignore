@@ -1,0 +1,7 @@
+# IDE
+.settings
+.classpath
+.project
+
+# Target
+target
