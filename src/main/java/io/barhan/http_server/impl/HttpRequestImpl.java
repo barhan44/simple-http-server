@@ -5,47 +5,56 @@ import java.util.Map;
 import io.barhan.http_server.HttpRequest;
 
 public class HttpRequestImpl implements HttpRequest {
+	private final String method;
+	private final String uri;
+	private final String httpVersion;
+	private final String remoteAddress;
+	private final Map<String, String> headers;
+	private final Map<String, String> params;
+
+	public HttpRequestImpl(String method, String uri, String httpVersion, String remoteAddress,
+			Map<String, String> headers, Map<String, String> params) {
+		this.method = method;
+		this.uri = uri;
+		this.httpVersion = httpVersion;
+		this.remoteAddress = remoteAddress;
+		this.headers = headers;
+		this.params = params;
+	}
 
 	@Override
 	public String getFirstLine() {
-		// TODO Auto-generated method stub
-		return null;
+		return String.format("%s %s %s", this.getMethod(), this.getURI(), this.getHTTPVersion());
 	}
 
 	@Override
 	public String getMethod() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.method;
 	}
 
 	@Override
 	public String getURI() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.uri;
 	}
 
 	@Override
 	public String getHTTPVersion() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.httpVersion;
 	}
 
 	@Override
 	public String getRemoteAddress() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.remoteAddress;
 	}
 
 	@Override
 	public Map<String, String> getHeaders() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.headers;
 	}
 
 	@Override
 	public Map<String, String> getParams() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.params;
 	}
 
 }
