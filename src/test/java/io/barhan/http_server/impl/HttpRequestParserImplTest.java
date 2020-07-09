@@ -40,4 +40,17 @@ public class HttpRequestParserImplTest {
 			assertEquals("localhost", request.getRemoteAddress());
 		}
 	}
+	
+	@Test
+	public void testUnsensitiveCaseGet() throws IOException {
+		try (InputStream httpMessage = this.getClassPathResourceStream("unsensitive-case-GET.txt")) {
+			HttpRequest request = httpRequestParserImpl.parseHttpRequest(httpMessage, "localhost");
+			assertEquals("localhost", request.getHeaders().get("Host"));
+			assertEquals(
+					"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36",
+					request.getHeaders().get("User-Agent"));
+			assertEquals("text/html", request.getHeaders().get("Accept"));
+			assertEquals("close", request.getHeaders().get("Connection"));
+		}
+	}
 }
