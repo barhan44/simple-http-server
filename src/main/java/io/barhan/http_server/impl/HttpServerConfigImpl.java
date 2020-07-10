@@ -164,8 +164,7 @@ class HttpServerConfigImpl implements HttpServerConfig {
 
 	@Override
 	public HttpClientSocketHandler buildNewHttpClientSocketHandler(Socket clientSocket) {
-		// TODO Auto-generated method stub
-		return null;
+		return new HttpClientSocketHandlerImpl(clientSocket, this);
 	}
 
 }
