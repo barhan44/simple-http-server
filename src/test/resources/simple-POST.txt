@@ -1,0 +1,8 @@
+POST /index.html HTTP/1.1
+Host: localhost
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36
+Accept: text/html
+Connection: close
+Content-Length: 103
+
+email=test%40barhan44.github.io&password=&number=5&text=Simple+Text&url=http%3A%2F%2Fbarhan44.github.io
