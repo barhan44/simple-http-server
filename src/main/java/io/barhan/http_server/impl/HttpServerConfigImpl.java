@@ -123,50 +123,43 @@ class HttpServerConfigImpl implements HttpServerConfig {
 
 	@Override
 	public ServerInfo getServerInfo() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.serverInfo;
 	}
 
 	@Override
 	public String getStatusMessage(int statusCode) {
-		// TODO Auto-generated method stub
-		return null;
+		String message = this.statusProperties.getProperty(String.valueOf(statusCode));
+		return message != null ? message : statusProperties.getProperty("500");
 	}
 
 	@Override
 	public HttpRequestParser getHttpRequestParser() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.httpRequestParser;
 	}
 
 	@Override
 	public HttpResponseBuilder getHttpResponseBuilder() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.httpResponseBuilder;
 	}
 
 	@Override
 	public HttpResponseWriter getHttpResponseWriter() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.httpResponseWriter;
 	}
 
 	@Override
 	public HttpServerContext getHttpServerContext() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.httpServerContext;
 	}
 
 	@Override
 	public HttpRequestDispatcher getHttpRequestDispatcher() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.httpRequestDispatcher;
 	}
 
 	@Override
 	public ThreadFactory getWorkerThreadFactory() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.workerThreadFactory;
 	}
 
 	@Override
