@@ -14,6 +14,7 @@ public class HttpServerFactory {
 	}
 
 	public HttpServer createHttpServer(Properties serverProperties) {
-		HttpServerConfig httpServerConfig = null;
+		HttpServerConfig httpServerConfig = new HttpServerConfigImpl(serverProperties);
+		return new HttpServerImpl(httpServerConfig);
 	}
 }
