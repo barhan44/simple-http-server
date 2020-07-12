@@ -70,7 +70,7 @@ public class HttpClientSocketHandlerImpl implements HttpClientSocketHandler {
 		}
 		this.httpServerConfig.getHttpResponseBuilder().prepareHttpResponse(response,
 				firstLine.startsWith(Constants.HEAD));
-		ACCESS_LOGGER.info("Request: {} - \"{}\", Respone: {} ({} bytes)", this.remoteAddress, firstLine,
+		ACCESS_LOGGER.info("Request: {} - \"{}\", Response: {} ({} bytes)", this.remoteAddress, firstLine,
 				response.getStatus(), response.getBodyLength());
 		this.httpServerConfig.getHttpResponseWriter().writeHttpResponse(out, response);
 	}
