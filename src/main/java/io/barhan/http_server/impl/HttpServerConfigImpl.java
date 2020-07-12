@@ -48,7 +48,7 @@ class HttpServerConfigImpl implements HttpServerConfig {
 
 	public HttpServerConfigImpl(Properties properties) {
 		this.loadAllProperties(properties);
-		this.rootPath = this.getRootPath();
+		this.rootPath = this.createRootPath();
 		this.serverInfo = this.createServerInfo();
 		this.staticExpiresDays = Integer.parseInt(this.serverProperties.getProperty("webapp.static.expires.days"));
 		this.staticExpiresExtensions = Arrays
@@ -108,7 +108,7 @@ class HttpServerConfigImpl implements HttpServerConfig {
 		return si;
 	}
 
-	protected Path getRootPath() {
+	protected Path createRootPath() {
 		Path path = Paths
 				.get(new File(this.serverProperties.getProperty("webapp.static.dir.root")).getAbsoluteFile().toURI());
 		if (!Files.exists(path)) {
@@ -139,6 +139,10 @@ class HttpServerConfigImpl implements HttpServerConfig {
 
 	protected Properties getStatusProperties() {
 		return this.statusProperties;
+	}
+
+	protected Path getRootPath() {
+		return this.rootPath;
 	}
 
 	@Override
