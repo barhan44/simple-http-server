@@ -45,7 +45,7 @@ class HttpServerContextImpl extends AbstractHttpConfigurableComponent implements
 
 	@Override
 	public Path getRootPath() {
-		return this.getHttpServerConfig().getRootPath();
+		return this.getHttpServerConfig().createRootPath();
 	}
 
 	@Override
