@@ -54,7 +54,7 @@ class HttpServerConfigImpl implements HttpServerConfig {
 		this.staticExpiresExtensions = Arrays
 				.asList(this.serverProperties.getProperty("webapp.static.expires.extensions").split(","));
 
-		this.httpServerContext = null;
+		this.httpServerContext = new HttpServerContextImpl(this);
 		this.httpRequestParser = new HttpRequestParserImpl();
 		this.httpResponseWriter = null;
 		this.httpResponseBuilder = null;
@@ -108,7 +108,7 @@ class HttpServerConfigImpl implements HttpServerConfig {
 		return si;
 	}
 
-	private Path getRootPath() {
+	protected Path getRootPath() {
 		Path path = Paths
 				.get(new File(this.serverProperties.getProperty("webapp.static.dir.root")).getAbsoluteFile().toURI());
 		if (!Files.exists(path)) {
@@ -119,6 +119,26 @@ class HttpServerConfigImpl implements HttpServerConfig {
 		}
 		LOGGER.info("Root path is {}", path.toAbsolutePath());
 		return path;
+	}
+
+	protected Properties getMimeTypesPropeties() {
+		return this.mimeTypesProperties;
+	}
+
+	protected HtmlTemplateManager getHtmlTemplateManager() {
+		return this.htmlTemplateManager;
+	}
+
+	protected List<String> getStaticExpiresExtensions() {
+		return this.staticExpiresExtensions;
+	}
+
+	protected int getStaticExpiresDays() {
+		return this.staticExpiresDays;
+	}
+
+	protected Properties getStatusProperties() {
+		return this.statusProperties;
 	}
 
 	@Override
