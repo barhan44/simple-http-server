@@ -58,7 +58,7 @@ class HttpServerConfigImpl implements HttpServerConfig {
 		this.httpRequestParser = new HttpRequestParserImpl();
 		this.httpResponseWriter = new HttpResponseWriterImpl(this);
 		this.httpResponseBuilder = new HttpResponseBuilderImpl(this);
-		this.httpRequestDispatcher = null;
+		this.httpRequestDispatcher = new TemporaryHttpRequestDispatcher();
 		this.workerThreadFactory = null;
 		this.htmlTemplateManager = null;
 	}
