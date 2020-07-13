@@ -73,7 +73,7 @@ class HttpHandlerImpl implements HttpHandler {
 		Map<String, Object> args = DataUtils
 				.buildMap(new Object[][] { { "TITLE", "List of files for " + dir.getFileName() },
 						{ "HEADER", "List of files for " + dir.getFileName() }, { "BODY", htmlBody } });
-		return context.getHtmlTemplateManager().processTemplate("simple.html", args);
+		return context.getHtmlTemplateManager().processTemplate("list.html", args);
 	}
 
 	private String getHref(String root, Path path) {
