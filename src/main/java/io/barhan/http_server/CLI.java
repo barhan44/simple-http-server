@@ -9,6 +9,7 @@ import java.util.Scanner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import io.barhan.http_server.handler.ServerInfoHttpHandler;
 import io.barhan.http_server.impl.HttpServerFactory;
 
 public class CLI {
@@ -41,9 +42,9 @@ public class CLI {
 			}
 		}
 	}
-	
+
 	private static HandlerConfig getHandlerConfig() {
-		return new HandlerConfig();
+		return new HandlerConfig().addHandler("/info", new ServerInfoHttpHandler());
 	}
 
 }
