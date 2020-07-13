@@ -69,7 +69,7 @@ class HttpServerConfigImpl implements HttpServerConfig {
 		this.defaultHttpHandler = new HttpHandlerImpl();
 		this.httpRequestDispatcher = new HttpRequestDispatcherImpl(this.defaultHttpHandler, this.httpHandlers);
 		this.workerThreadFactory = new ThreadFactoryImpl();
-		this.htmlTemplateManager = null;
+		this.htmlTemplateManager = new HtmlTemplateManagerImpl();
 	}
 
 	private void loadAllProperties(Properties properties) {
