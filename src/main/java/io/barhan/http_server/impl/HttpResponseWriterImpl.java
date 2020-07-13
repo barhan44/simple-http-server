@@ -13,7 +13,7 @@ import io.barhan.http_server.config.HttpResponseWriter;
 import io.barhan.http_server.config.HttpServerConfig;
 import io.barhan.http_server.config.ReadableHttpResponse;
 
-public class HttpResponseWriterImpl extends AbstractHttpConfigurableComponent implements HttpResponseWriter {
+class HttpResponseWriterImpl extends AbstractHttpConfigurableComponent implements HttpResponseWriter {
 
 	public HttpResponseWriterImpl(HttpServerConfig httpServerConfig) {
 		super(httpServerConfig);

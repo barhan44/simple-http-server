@@ -5,7 +5,7 @@ import java.util.Properties;
 import io.barhan.http_server.HttpServer;
 import io.barhan.http_server.config.HttpServerConfig;
 
-public class HttpServerFactory {
+class HttpServerFactory {
 	protected HttpServerFactory() {
 	};
 

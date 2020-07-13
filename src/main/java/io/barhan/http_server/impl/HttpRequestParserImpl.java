@@ -20,7 +20,7 @@ import io.barhan.http_server.exception.MethodNotAllowedException;
 import io.barhan.http_server.utils.DataUtils;
 import io.barhan.http_server.utils.HttpUtils;
 
-public class HttpRequestParserImpl implements HttpRequestParser {
+class HttpRequestParserImpl implements HttpRequestParser {
 
 	@Override
 	public HttpRequest parseHttpRequest(InputStream inputStream, String remoteAddress)

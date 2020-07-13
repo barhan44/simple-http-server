@@ -21,7 +21,7 @@ import io.barhan.http_server.exception.AbstractRequestParseFailedException;
 import io.barhan.http_server.exception.HttpServerException;
 import io.barhan.http_server.exception.MethodNotAllowedException;
 
-public class HttpClientSocketHandlerImpl implements HttpClientSocketHandler {
+class HttpClientSocketHandlerImpl implements HttpClientSocketHandler {
 	private static final Logger ACCESS_LOGGER = LoggerFactory.getLogger("ACCESS_LOG");
 	private static final Logger LOGGER = LoggerFactory.getLogger(HttpClientSocketHandlerImpl.class);
 

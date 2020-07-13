@@ -4,7 +4,7 @@ import java.util.Map;
 
 import io.barhan.http_server.HttpRequest;
 
-public class HttpRequestImpl implements HttpRequest {
+class HttpRequestImpl implements HttpRequest {
 	private final String method;
 	private final String uri;
 	private final String httpVersion;

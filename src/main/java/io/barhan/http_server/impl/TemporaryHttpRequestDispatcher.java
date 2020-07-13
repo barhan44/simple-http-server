@@ -7,7 +7,7 @@ import io.barhan.http_server.HttpResponse;
 import io.barhan.http_server.HttpServerContext;
 import io.barhan.http_server.config.HttpRequestDispatcher;
 
-public class TemporaryHttpRequestDispatcher implements HttpRequestDispatcher {
+class TemporaryHttpRequestDispatcher implements HttpRequestDispatcher {
 
 	@Override
 	public void handle(HttpServerContext context, HttpRequest request, HttpResponse response) throws IOException {

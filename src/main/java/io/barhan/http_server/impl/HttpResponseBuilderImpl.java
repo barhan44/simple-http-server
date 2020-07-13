@@ -6,7 +6,7 @@ import io.barhan.http_server.config.HttpResponseBuilder;
 import io.barhan.http_server.config.HttpServerConfig;
 import io.barhan.http_server.config.ReadableHttpResponse;
 
-public class HttpResponseBuilderImpl extends AbstractHttpConfigurableComponent implements HttpResponseBuilder {
+class HttpResponseBuilderImpl extends AbstractHttpConfigurableComponent implements HttpResponseBuilder {
 
 	public HttpResponseBuilderImpl(HttpServerConfig httpServerConfig) {
 		super(httpServerConfig);
