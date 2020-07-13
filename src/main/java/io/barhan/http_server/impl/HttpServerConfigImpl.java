@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -16,7 +17,9 @@ import java.util.concurrent.ThreadFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import io.barhan.http_server.HandlerConfig;
 import io.barhan.http_server.HtmlTemplateManager;
+import io.barhan.http_server.HttpHandler;
 import io.barhan.http_server.HttpServerContext;
 import io.barhan.http_server.ServerInfo;
 import io.barhan.http_server.config.HttpClientSocketHandler;
@@ -34,20 +37,25 @@ class HttpServerConfigImpl implements HttpServerConfig {
 	private final Properties statusProperties = new Properties();
 	private final Properties mimeTypesProperties = new Properties();
 
+	private final Map<String, HttpHandler> httpHandlers;
 	private final Path rootPath;
 	private final HttpServerContext httpServerContext;
 	private final HttpRequestParser httpRequestParser;
 	private final HttpResponseWriter httpResponseWriter;
 	private final HttpResponseBuilder httpResponseBuilder;
 	private final HttpRequestDispatcher httpRequestDispatcher;
+	private final HttpHandler defaultHttpHandler;
 	private final ThreadFactory workerThreadFactory;
 	private final HtmlTemplateManager htmlTemplateManager;
 	private final ServerInfo serverInfo;
 	private final List<String> staticExpiresExtensions;
 	private final int staticExpiresDays;
 
-	public HttpServerConfigImpl(Properties properties) {
+	@SuppressWarnings("unchecked")
+	public HttpServerConfigImpl(HandlerConfig handlerConfig, Properties properties) {
 		this.loadAllProperties(properties);
+		this.httpHandlers = handlerConfig != null ? handlerConfig.toMap()
+				: (Map<String, HttpHandler>) Collections.EMPTY_MAP;
 		this.rootPath = this.createRootPath();
 		this.serverInfo = this.createServerInfo();
 		this.staticExpiresDays = Integer.parseInt(this.serverProperties.getProperty("webapp.static.expires.days"));
@@ -58,7 +66,8 @@ class HttpServerConfigImpl implements HttpServerConfig {
 		this.httpRequestParser = new HttpRequestParserImpl();
 		this.httpResponseWriter = new HttpResponseWriterImpl(this);
 		this.httpResponseBuilder = new HttpResponseBuilderImpl(this);
-		this.httpRequestDispatcher = new TemporaryHttpRequestDispatcher();
+		this.defaultHttpHandler = null;
+		this.httpRequestDispatcher = new HttpRequestDispatcherImpl(this.defaultHttpHandler, this.httpHandlers);
 		this.workerThreadFactory = new ThreadFactoryImpl();
 		this.htmlTemplateManager = null;
 	}

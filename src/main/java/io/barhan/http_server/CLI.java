@@ -20,7 +20,7 @@ public class CLI {
 		Thread.currentThread().setName("CLI-main-thread");
 		try {
 			HttpServerFactory httpServerFactory = HttpServerFactory.create();
-			HttpServer httpServer = httpServerFactory.createHttpServer(null);
+			HttpServer httpServer = httpServerFactory.createHttpServer(getHandlerConfig(), null);
 			httpServer.start();
 			waitForQuit(httpServer);
 		} catch (Exception e) {
@@ -40,6 +40,10 @@ public class CLI {
 				}
 			}
 		}
+	}
+	
+	private static HandlerConfig getHandlerConfig() {
+		return new HandlerConfig();
 	}
 
 }
