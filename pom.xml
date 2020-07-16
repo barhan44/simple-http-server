@@ -39,7 +39,7 @@
 						</descriptorRefs>
 						<archive>
 							<manifest>
-								<mainClass>net.devstudy.httpserver.CLI</mainClass>
+								<mainClass>io.barhan.http_server.CLI</mainClass>
 							</manifest>
 						</archive>
 					</configuration>
