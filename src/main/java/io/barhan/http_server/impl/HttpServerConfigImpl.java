@@ -94,7 +94,7 @@ class HttpServerConfigImpl implements HttpServerConfig {
 		}
 	}
 
-	private void loadProperties(Properties properties, ClassLoader classLoader, String resource) {
+	protected void loadProperties(Properties properties, ClassLoader classLoader, String resource) {
 		try (InputStream in = classLoader.getResourceAsStream(resource)) {
 			if (in != null) {
 				properties.load(in);
@@ -152,6 +152,18 @@ class HttpServerConfigImpl implements HttpServerConfig {
 
 	protected Path getRootPath() {
 		return this.rootPath;
+	}
+	
+	protected HttpHandler getDefaultHttpHandler() {
+		return this.defaultHttpHandler;
+	}
+	
+	protected Properties getServerProperties() {
+		return this.serverProperties;
+	}
+	
+	protected Map<String, HttpHandler> getHttpHandlers() {
+		return this.httpHandlers;
 	}
 
 	@Override

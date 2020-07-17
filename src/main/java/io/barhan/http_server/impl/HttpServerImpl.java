@@ -21,6 +21,7 @@ class HttpServerImpl implements HttpServer {
 	private final ExecutorService executorService;
 	private final Thread mainServerThread;
 	private volatile boolean isServerStopped;
+	private volatile boolean stopRequest;
 
 	protected HttpServerImpl(HttpServerConfig httpServerConfig) {
 		this.httpServerConfig = httpServerConfig;
@@ -30,7 +31,7 @@ class HttpServerImpl implements HttpServer {
 		this.isServerStopped = false;
 	}
 
-	private ServerSocket createServerSocket() {
+	protected ServerSocket createServerSocket() {
 		try {
 			ServerSocket serverSocket = new ServerSocket(this.httpServerConfig.getServerInfo().getPort());
 			serverSocket.setReuseAddress(true);
@@ -42,7 +43,7 @@ class HttpServerImpl implements HttpServer {
 		}
 	}
 
-	private ExecutorService createExecutorService() {
+	protected ExecutorService createExecutorService() {
 		ThreadFactory threadFactory = this.httpServerConfig.getWorkerThreadFactory();
 		int threadCount = this.httpServerConfig.getServerInfo().getThreadCount();
 		if (threadCount > 0) {
@@ -52,14 +53,14 @@ class HttpServerImpl implements HttpServer {
 		}
 	}
 
-	private Thread createMainServerThread(Runnable r) {
+	protected Thread createMainServerThread(Runnable r) {
 		Thread thread = new Thread(r, "Main Server Thread");
 		thread.setPriority(Thread.MAX_PRIORITY);
 		thread.setDaemon(false);
 		return thread;
 	}
 
-	private Runnable createServerRunnable() {
+	protected Runnable createServerRunnable() {
 		return new Runnable() {
 
 			@Override
@@ -76,7 +77,9 @@ class HttpServerImpl implements HttpServer {
 						break;
 					}
 				}
-				System.exit(0);
+				if (stopRequest) {
+					System.exit(0);
+				}
 			}
 		};
 	}
@@ -96,6 +99,7 @@ class HttpServerImpl implements HttpServer {
 	@Override
 	public void stop() {
 		LOGGER.info("Stop server command!");
+		this.stopRequest = true;
 		this.mainServerThread.interrupt();
 		try {
 			this.serverSocket.close();
@@ -105,7 +109,7 @@ class HttpServerImpl implements HttpServer {
 
 	}
 
-	private Thread getShutdownHook() {
+	protected Thread getShutdownHook() {
 		return new Thread(new Runnable() {
 
 			@Override
@@ -118,7 +122,7 @@ class HttpServerImpl implements HttpServer {
 		}, "ShutdownHook");
 	}
 
-	private void destroyHttpServer() {
+	protected void destroyHttpServer() {
 		this.executorService.shutdownNow();
 		LOGGER.info("Server stopped");
 		this.isServerStopped = true;

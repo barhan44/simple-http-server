@@ -1,5 +1,6 @@
 package io.barhan.http_server.impl;
 
+import java.util.Collections;
 import java.util.Map;
 
 import io.barhan.http_server.HttpRequest;
@@ -18,8 +19,8 @@ class HttpRequestImpl implements HttpRequest {
 		this.uri = uri;
 		this.httpVersion = httpVersion;
 		this.remoteAddress = remoteAddress;
-		this.headers = headers;
-		this.params = params;
+		this.headers = Collections.unmodifiableMap(headers);
+		this.params = Collections.unmodifiableMap(params);
 	}
 
 	@Override

@@ -20,7 +20,7 @@ class HtmlTemplateManagerImpl implements HtmlTemplateManager {
 		return this.populateTemplate(template, arguments);
 	}
 
-	private InputStream getClasspathResource(String name) {
+	protected InputStream getClasspathResource(String name) {
 		return HtmlTemplateManagerImpl.class.getClassLoader().getResourceAsStream(name);
 	}
 
