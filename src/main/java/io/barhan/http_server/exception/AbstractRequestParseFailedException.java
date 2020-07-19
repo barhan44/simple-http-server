@@ -14,11 +14,6 @@ public abstract class AbstractRequestParseFailedException extends HttpServerExce
 		this.firstLine = firstLine;
 	}
 
-	public AbstractRequestParseFailedException(Throwable cause, String firstLine) {
-		super(cause);
-		this.firstLine = firstLine;
-	}
-
 	public String getFirstLine() {
 		return this.firstLine;
 	}

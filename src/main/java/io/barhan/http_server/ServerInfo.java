@@ -23,16 +23,8 @@ public class ServerInfo {
 		return this.port;
 	}
 
-	public void setPort(int port) {
-		this.port = port;
-	}
-
 	public int getThreadCount() {
 		return this.threadCount;
-	}
-
-	public void setThreadCount(int threadCount) {
-		this.threadCount = threadCount;
 	}
 
 	@Override

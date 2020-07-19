@@ -11,8 +11,4 @@ public class HttpServerConfigException extends HttpServerException {
 		super(message);
 	}
 
-	public HttpServerConfigException(Throwable cause) {
-		super(cause);
-	}
-
 }

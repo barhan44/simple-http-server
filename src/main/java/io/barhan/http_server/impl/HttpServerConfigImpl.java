@@ -73,7 +73,7 @@ class HttpServerConfigImpl implements HttpServerConfig {
 		this.loadProperties(this.mimeTypesProperties, classLoader, "mime-types.properties");
 		this.loadProperties(this.serverProperties, classLoader, "server.properties");
 		if (properties != null) {
-			LOGGER.info("Ovveriding default server properties");
+			LOGGER.info("Overriding default server properties");
 			this.serverProperties.putAll(properties);
 		}
 		this.logServerProperties();
@@ -145,14 +145,6 @@ class HttpServerConfigImpl implements HttpServerConfig {
 		return this.statusProperties;
 	}
 
-	protected Path getRootPath() {
-		return this.rootPath;
-	}
-	
-	protected HttpHandler getDefaultHttpHandler() {
-		return this.defaultHttpHandler;
-	}
-	
 	protected Properties getServerProperties() {
 		return this.serverProperties;
 	}
