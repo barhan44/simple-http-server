@@ -56,7 +56,7 @@ class HttpClientSocketHandlerImpl implements HttpClientSocketHandler {
 
 	private void processRequest(String remoteAddress, InputStream in, OutputStream out) throws IOException {
 		ReadableHttpResponse response = this.httpServerConfig.getHttpResponseBuilder().buildNewHttpResponse();
-		String firstLine = null;
+		String firstLine;
 		try {
 			HttpRequest request = this.httpServerConfig.getHttpRequestParser().parseHttpRequest(in, remoteAddress);
 			firstLine = request.getFirstLine();

@@ -7,11 +7,7 @@ import java.net.Socket;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 import java.util.concurrent.ThreadFactory;
 
 import org.slf4j.Logger;
@@ -51,11 +47,10 @@ class HttpServerConfigImpl implements HttpServerConfig {
 	private final List<String> staticExpiresExtensions;
 	private final int staticExpiresDays;
 
-	@SuppressWarnings("unchecked")
 	public HttpServerConfigImpl(HandlerConfig handlerConfig, Properties properties) {
 		this.loadAllProperties(properties);
 		this.httpHandlers = handlerConfig != null ? handlerConfig.toMap()
-				: (Map<String, HttpHandler>) Collections.EMPTY_MAP;
+				: new HashMap<>();
 		this.rootPath = this.createRootPath();
 		this.serverInfo = this.createServerInfo();
 		this.staticExpiresDays = Integer.parseInt(this.serverProperties.getProperty("webapp.static.expires.days"));
@@ -82,7 +77,7 @@ class HttpServerConfigImpl implements HttpServerConfig {
 			this.serverProperties.putAll(properties);
 		}
 		this.logServerProperties();
-	};
+	}
 
 	private void logServerProperties() {
 		if (LOGGER.isDebugEnabled()) {

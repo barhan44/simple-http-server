@@ -27,16 +27,13 @@ public final class HttpUtils {
 
 	public static String readFirstLineAndHeaders(InputStream inputStream) throws IOException {
 		ByteArray byteArray = new ByteArray();
-		while (true) {
+		do {
 			int read = inputStream.read();
 			if (read == -1) {
 				throw new EOFException("Input stream closed.");
 			}
 			byteArray.add((byte) read);
-			if (byteArray.isEmptyLine()) {
-				break;
-			}
-		}
+		} while (!byteArray.isEmptyLine());
 		return new String(byteArray.toArray(), StandardCharsets.UTF_8);
 	}
 
